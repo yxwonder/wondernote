@@ -459,7 +459,7 @@
 
   <!-- ───── 66권의 서가 ───── -->
   <section id="panel-shelf" role="tabpanel" aria-labelledby="tab-shelf">
-    <p class="sheet-state" id="sheet-state"><span class="dot"></span><span id="sheet-state-text">구글 시트를 확인하는 중…</span></p>
+    <p class="sheet-state" id="sheet-state"><span class="dot"></span><span id="sheet-state-text">서가를 불러오는 중…</span></p>
 
     <div class="filters" id="keyword-filters" role="group" aria-label="마음 키워드 필터">
       <span class="f-label">마음</span>
@@ -535,7 +535,7 @@
       <span>2026. 10. 26 – 12. 31</span>
     </div>
     <p class="foot-sig">다시 아날로그로 :)</p>
-    <p class="foot-note">66권의 서가는 2026년 마지막 66일 묵상 중 공개된 편에서 골랐습니다. 판교책방 아카이브는 노션 ‘모이고 싶은 큐레이션’의 29개 모임 서가를 그대로 옮겨 왔고, 책 제목을 누르면 알라딘으로 이어집니다. 자료는 <a href="https://docs.google.com/spreadsheets/d/1eL_QA97mbWT1BksM1UWEBGtsDPAsI7_oriciwwVhMDM/edit" target="_blank" rel="noopener">원더노트 · 66권 관리표</a>에서 함께 고칩니다.</p>
+    <p class="foot-note">66권의 서가는 2026년 마지막 66일 묵상 중 공개된 편에서 골랐습니다. 판교책방 아카이브는 노션 ‘모이고 싶은 큐레이션’의 29개 모임 서가를 그대로 옮겨 왔고, 책 제목을 누르면 알라딘으로 이어집니다.</p>
   </div>
 </footer>
 
@@ -718,11 +718,11 @@ function setSheetState(how){
   if (how === 'fetch' || how === 'jsonp'){
     el.className = 'sheet-state ok';
     const t = new Date();
-    txt.innerHTML = '구글 시트와 연결됨 · ' + pad2(t.getHours()) + ':' + pad2(t.getMinutes()) +
-      ' 기준 · <a href="' + SHEET_URL + '" target="_blank" rel="noopener">관리표 열기</a>';
+    txt.textContent = '최신 서가 반영됨 · ' + pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' 기준';
   } else {
     el.className = 'sheet-state off';
-    txt.innerHTML = '시트에 닿지 못해 기본 데이터로 보는 중 · <a href="' + SHEET_URL + '" target="_blank" rel="noopener">관리표 열기</a>';
+    const t = new Date();
+    txt.textContent = '오늘의 서가 · ' + pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' 기준';
   }
 }
 
