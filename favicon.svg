@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="원더노트">
+  <rect width="64" height="64" rx="3" fill="#1F352E"/>
+  <path d="M802 698 904 688 753 114 583 688 693 698V728H414V698L515 689L345 115L191 689L294 698V728H12V698L101 690L297 -7H344L525 604L709 -7H756L946 688L1046 698V728H802Z" transform="translate(9.61,47.50) scale(0.04252,-0.04252)" fill="#F7F4EE" stroke="#F7F4EE" stroke-width="46" stroke-linejoin="round"/>
+</svg>
