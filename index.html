@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>원더노트 · 66 Shelves</title>
+<meta name="description" content="성경 66권의 질문 옆에 나란히 꽂힌 두 권의 책 — 원더노트, 경이와믿음 · 66 Shelves.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F4EE;
+    --paper-deep:#F1EDE3;
+    --card:#FCFAF5;
+    --ink:#2A2925;
+    --ink-soft:#5A574E;
+    --green:#1F352E;
+    --green-soft:#41604F;
+    --line:#DDD6C8;
+    --line-soft:#E8E2D5;
+    --sepia:#8B8069;
+    --serif:"Noto Serif KR","Nanum Myeongjo","Apple SD Gothic Neo",serif;
+    --sans:"Noto Sans KR","Apple SD Gothic Neo","Helvetica Neue",sans-serif;
+    --max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 42%),
+      radial-gradient(circle at 82% 78%, rgba(221,214,200,.35), transparent 46%);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-weight:400;
+    line-height:1.75;
+    letter-spacing:-.005em;
+    word-break:keep-all;overflow-wrap:break-word;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
+  @media(min-width:760px){.wrap{padding:0 40px}}
+
+  /* ───────── header ───────── */
+  header{padding:34px 0 0}
+  .masthead{
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.24em;color:var(--sepia);
+    text-transform:uppercase;
+  }
+  .masthead .brand{font-family:var(--sans);letter-spacing:.22em}
+  .masthead .no{
+    font-family:var(--serif);letter-spacing:.08em;font-size:11px;
+    border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--green);
+    white-space:nowrap;
+  }
+  h1{
+    font-family:var(--serif);font-weight:500;
+    font-size:clamp(30px,8.2vw,52px);
+    line-height:1.24;letter-spacing:-.03em;
+    margin:26px 0 0;color:var(--green);
+  }
+  h1 .h1-2{display:inline-block;white-space:nowrap}
+  h1 .dot{color:var(--sepia);margin:0 .26em 0 .1em;font-weight:300}
+  h1 em{
+    font-style:normal;display:inline-block;
+    font-size:.46em;letter-spacing:.06em;color:var(--green-soft);
+    border-bottom:1px solid var(--line);padding-bottom:2px;
+  }
+  .lede{
+    margin:16px 0 0;font-size:clamp(15px,4.4vw,19px);font-weight:400;
+    color:var(--green);letter-spacing:-.01em;text-wrap:balance;
+  }
+  .lede::before{content:"“";color:var(--sepia);margin-right:2px}
+  .lede::after{content:"”";color:var(--sepia);margin-left:2px}
+  .sub{
+    margin:10px 0 0;font-family:var(--sans);font-weight:300;
+    font-size:13px;line-height:1.85;color:var(--ink-soft);max-width:44em;
+    text-wrap:pretty;
+  }
+  .rule{
+    height:0;border:0;border-top:1px solid var(--line);
+    margin:26px 0 0;
+  }
+  .rule.thick{border-top:1px solid var(--green);opacity:.55;margin-top:22px}
+  .rule.thin{margin-top:3px;opacity:.9}
+
+  /* spines — 66 marks */
+  .spines-wrap{display:flex;align-items:flex-end;gap:14px;margin:22px 0 0;flex-wrap:wrap}
+  .spines{display:flex;gap:2.5px;align-items:flex-end;flex:1 1 240px;min-width:200px}
+  .spines i{
+    display:block;flex:1 1 auto;height:12px;background:var(--line-soft);
+    border-radius:1px;
+  }
+  .spines i.on{background:var(--green);opacity:.82}
+  .spines i.on:nth-child(3n){opacity:.95}
+  .spines-cap{
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--sepia);
+    white-space:nowrap;
+  }
+
+  /* ───────── tabs ───────── */
+  .tabbar{
+    position:sticky;top:0;z-index:20;
+    margin:26px 0 0;
+    background:rgba(247,244,238,.94);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .tabs{display:flex;gap:26px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    appearance:none;background:none;border:0;cursor:pointer;
+    font-family:var(--serif);font-size:14.5px;letter-spacing:-.01em;
+    color:var(--sepia);padding:15px 0 13px;position:relative;white-space:nowrap;
+    border-bottom:2px solid transparent;transition:color .18s ease;
+  }
+  .tab .n{
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.05em;
+    color:var(--sepia);margin-left:6px;vertical-align:2px;
+  }
+  .tab:hover{color:var(--green)}
+  .tab[aria-selected="true"]{color:var(--green);border-bottom-color:var(--green)}
+  .tab[aria-selected="true"] .n{color:var(--green-soft)}
+
+  /* ───────── filter chips ───────── */
+  .filters{
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:16px 0 2px;
+  }
+  .filters + .filters{padding-top:8px}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{
+    appearance:none;cursor:pointer;white-space:nowrap;
+    font-family:var(--sans);font-size:12px;letter-spacing:-.01em;
+    color:var(--ink-soft);background:transparent;
+    border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;transition:all .16s ease;
+  }
+  .chip:hover{border-color:var(--green-soft);color:var(--green)}
+  .chip[aria-pressed="true"]{
+    background:var(--green);border-color:var(--green);color:#F7F4EE;
+  }
+  @media(max-width:520px){
+    .filters{gap:6px}
+    .chip{font-size:11.5px;padding:5px 10px}
+    .f-label{font-size:9px;letter-spacing:.14em}
+  }
+  .f-label{
+    font-family:var(--sans);font-size:9.5px;letter-spacing:.18em;color:var(--sepia);
+    text-transform:uppercase;flex:0 0 auto;padding-right:2px;
+  }
+
+  /* ───────── section meta ───────── */
+  .sec-head{
+    display:flex;align-items:baseline;justify-content:space-between;gap:6px 14px;
+    padding:26px 0 14px;flex-wrap:wrap;
+  }
+  @media(max-width:620px){
+    .sec-head{flex-direction:column;align-items:flex-start;gap:3px}
+  }
+  .sec-title{
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--sepia);
+  }
+  .count{
+    font-family:var(--sans);font-size:11px;letter-spacing:.04em;color:var(--sepia);
+    white-space:nowrap;
+  }
+  .count b{font-family:var(--serif);font-weight:500;color:var(--green);font-size:13px}
+
+  /* ───────── sheet state ───────── */
+  .sheet-state{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    margin:14px 0 0;font-family:var(--sans);font-weight:300;
+    font-size:11px;letter-spacing:.02em;color:var(--sepia);
+  }
+  .sheet-state .dot{
+    width:5px;height:5px;border-radius:50%;background:var(--sepia);
+    display:inline-block;flex:0 0 5px;
+  }
+  .sheet-state.ok .dot{background:var(--green-soft)}
+  .sheet-state.off .dot{background:#B0806A}
+  .sheet-state a{border-bottom:1px solid var(--line);padding-bottom:1px}
+  .sheet-state a:hover{color:var(--green);border-bottom-color:var(--green)}
+  .refresh{
+    appearance:none;background:none;border:0;cursor:pointer;padding:0 0 0 2px;
+    font-family:var(--sans);font-weight:300;font-size:11px;color:var(--sepia);
+    border-bottom:1px solid var(--line);
+  }
+  .refresh:hover{color:var(--green);border-bottom-color:var(--green)}
+
+  /* ───────── shelf cards ───────── */
+  .cards{display:grid;gap:18px;padding-bottom:8px}
+  @media(min-width:880px){
+    .cards{grid-template-columns:1fr 1fr;gap:22px}
+  }
+  .card{
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 20px 20px 24px;
+    box-shadow:0 1px 0 rgba(31,53,46,.04);
+  }
+  @media(min-width:760px){.card{padding:28px 26px 26px 32px}}
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+    background:var(--green);opacity:.9;
+  }
+  .card::after{
+    content:"";position:absolute;right:8px;top:8px;width:7px;height:7px;
+    border-top:1px solid var(--line);border-right:1px solid var(--line);
+  }
+  .card[hidden]{display:none}
+  .card-top{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    font-family:var(--sans);font-size:10px;letter-spacing:.18em;color:var(--sepia);
+  }
+  .stamp{
+    font-family:var(--serif);font-size:10.5px;letter-spacing:.1em;
+    color:var(--green);border:1px solid var(--line);
+    padding:2px 8px;border-radius:1px;background:var(--paper-deep);
+  }
+  .book{
+    font-family:var(--serif);font-weight:600;font-size:clamp(22px,6vw,27px);
+    letter-spacing:-.03em;color:var(--green);margin:14px 0 0;line-height:1.3;
+  }
+  .book .en{
+    display:block;font-family:var(--sans);font-weight:300;
+    font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--sepia);margin-top:7px;
+  }
+  .q{
+    font-family:var(--serif);font-weight:400;font-style:italic;
+    font-size:clamp(16px,4.6vw,18px);line-height:1.7;letter-spacing:-.01em;
+    color:var(--ink);margin:16px 0 0;
+  }
+  .voice{
+    margin:12px 0 0;font-size:12.5px;line-height:1.8;color:var(--green-soft);
+    font-family:var(--sans);font-weight:300;
+  }
+  .voice b{
+    display:inline-block;font-family:var(--sans);font-weight:500;
+    font-size:9.5px;letter-spacing:.2em;color:var(--sepia);
+    margin-right:7px;vertical-align:1px;
+  }
+  .watch{
+    display:inline-flex;align-items:center;gap:7px;
+    margin:18px 0 0;padding:8px 14px 8px 12px;
+    font-family:var(--sans);font-size:12.5px;letter-spacing:-.01em;
+    color:var(--green);border:1px solid var(--line);border-radius:999px;
+    background:transparent;transition:all .16s ease;
+  }
+  .watch span{font-size:9px;color:var(--sepia);transition:color .16s ease}
+  .watch:hover{background:var(--green);border-color:var(--green);color:#F7F4EE}
+  .watch:hover span{color:#D8C9B4}
+  .pairing{margin:20px 0 0;border-top:1px dotted var(--line);padding-top:14px}
+  .pairing-h{
+    font-family:var(--sans);font-size:9.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--sepia);margin-bottom:12px;
+  }
+  .pair{margin:0 0 14px}
+  .pair:last-child{margin-bottom:0}
+  .pair-line{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .pair-title{
+    font-family:var(--serif);font-size:15px;font-weight:500;color:var(--ink);
+    border-bottom:1px solid var(--line);padding-bottom:1px;
+    transition:border-color .16s ease,color .16s ease;
+  }
+  .pair-title:hover{color:var(--green);border-bottom-color:var(--green)}
+  .pair-title::after{content:" ↗";font-size:10px;color:var(--sepia)}
+  .type{
+    font-family:var(--sans);font-size:9px;letter-spacing:.12em;
+    color:var(--sepia);border:1px solid var(--line-soft);
+    padding:1px 5px 2px;border-radius:1px;background:rgba(241,237,227,.55);
+    white-space:nowrap;
+  }
+  .pair-note{
+    margin:6px 0 0;font-family:var(--sans);font-weight:300;
+    font-size:12.5px;line-height:1.85;color:var(--ink-soft);
+  }
+  .empty{
+    padding:44px 4px 60px;text-align:center;color:var(--sepia);
+    font-family:var(--sans);font-weight:300;font-size:13px;line-height:2;
+  }
+  .empty b{display:block;font-family:var(--serif);font-size:16px;color:var(--green);margin-bottom:6px}
+
+  /* ───────── 아직 비어 있는 자리 ───────── */
+  .pending{
+    margin:30px 0 0;border-top:1px solid var(--line);padding:22px 0 6px;
+  }
+  .pending h3{
+    margin:0 0 4px;font-family:var(--sans);font-weight:400;
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sepia);
+  }
+  .pending p{
+    margin:0 0 14px;font-family:var(--sans);font-weight:300;
+    font-size:12px;line-height:1.9;color:var(--sepia);
+  }
+  .spine-list{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));
+    gap:6px 16px;margin:0;padding:0;list-style:none;
+  }
+  .spine-list li{
+    font-family:var(--sans);font-weight:300;font-size:12.5px;color:var(--ink-soft);
+    display:flex;gap:7px;align-items:baseline;
+    border-bottom:1px dotted var(--line-soft);padding-bottom:3px;
+  }
+  .spine-list .no{
+    font-size:9.5px;letter-spacing:.1em;color:var(--sepia);flex:0 0 18px;
+  }
+
+  /* ───────── archive ───────── */
+  .search{
+    position:relative;margin:22px 0 0;
+  }
+  .search input{
+    width:100%;appearance:none;
+    font-family:var(--serif);font-size:14px;color:var(--ink);
+    background:transparent;border:0;border-bottom:1px solid var(--green);
+    padding:10px 34px 10px 2px;border-radius:0;
+  }
+  .search input::placeholder{color:var(--sepia);font-family:var(--sans);font-size:12.5px;font-weight:300}
+  .search input:focus{outline:none;border-bottom-color:var(--green-soft)}
+  .search .mag{
+    position:absolute;right:4px;top:10px;font-size:13px;color:var(--sepia);
+  }
+  .groups{border-top:1px solid var(--line);margin-top:8px;padding-bottom:10px}
+  .group{border-bottom:1px solid var(--line-soft)}
+  .group[hidden]{display:none}
+  .group-btn{
+    width:100%;appearance:none;background:none;border:0;cursor:pointer;
+    display:flex;align-items:baseline;gap:12px;text-align:left;
+    padding:16px 2px;font-family:inherit;color:inherit;
+    transition:color .16s ease;
+  }
+  .group-btn:hover{color:var(--green)}
+  .group-btn:hover .g-name{color:var(--green)}
+  .g-no{
+    font-family:var(--sans);font-size:10px;letter-spacing:.14em;color:var(--sepia);
+    flex:0 0 26px;padding-top:3px;
+  }
+  .g-name{
+    font-family:var(--serif);font-size:15px;font-weight:500;letter-spacing:-.02em;
+    flex:1 1 auto;line-height:1.5;
+  }
+  .g-cat{
+    font-family:var(--sans);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--sepia);border:1px solid var(--line);padding:2px 7px;border-radius:999px;
+    white-space:nowrap;
+  }
+  .g-n{
+    font-family:var(--sans);font-size:11px;letter-spacing:.02em;color:var(--sepia);
+    flex:0 0 auto;white-space:nowrap;
+  }
+  .g-caret{
+    flex:0 0 12px;font-size:9px;color:var(--sepia);text-align:right;
+    transition:transform .2s ease;
+  }
+  .group-btn[aria-expanded="true"] .g-caret{transform:rotate(180deg)}
+  .g-books{
+    padding:0 2px 20px 38px;
+  }
+  .g-books[hidden]{display:none}
+  .g-books ul{margin:0;padding:0;list-style:none}
+  .g-books li{
+    position:relative;padding:5px 0 5px 14px;
+    font-family:var(--sans);font-weight:300;font-size:13px;line-height:1.7;
+    color:var(--ink-soft);
+  }
+  .g-books li::before{
+    content:"";position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--line);
+  }
+  .g-books a{
+    color:var(--ink);border-bottom:1px solid var(--line-soft);
+    transition:border-color .16s ease,color .16s ease;
+  }
+  .g-books a:hover{color:var(--green);border-bottom-color:var(--green)}
+  .g-note{
+    font-family:var(--sans);font-size:11.5px;font-weight:300;color:var(--sepia);
+    padding-top:4px;
+  }
+
+  /* ───────── footer ───────── */
+  footer{margin-top:34px;border-top:1px solid var(--line);padding:26px 0 54px}
+  .foot-line{
+    display:flex;align-items:baseline;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--sepia);
+    text-transform:uppercase;
+  }
+  .foot-sig{
+    margin:18px 0 0;font-family:var(--serif);font-style:italic;
+    font-size:14px;color:var(--green-soft);letter-spacing:-.01em;
+  }
+  .foot-note{
+    margin:10px 0 0;font-family:var(--sans);font-weight:300;
+    font-size:11.5px;line-height:1.9;color:var(--sepia);max-width:46em;
+  }
+  .foot-note a{border-bottom:1px solid var(--line);color:var(--green-soft)}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media print{
+    .tabbar,.filters,.search,.refresh{display:none}
+    body{background:#fff}
+    .card{break-inside:avoid;box-shadow:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="masthead">
+      <span class="brand">경이와믿음 · 66 Love Letters</span>
+      <span class="no">No. 01 / 66</span>
+    </div>
+    <h1>원더노트<span class="h1-2"><span class="dot">·</span><em>66 Shelves</em></span></h1>
+    <p class="lede">성경 66권의 질문 옆에 나란히 꽂힌 두 권의 책</p>
+    <p class="sub">2026년 마지막 66일, 매일 한 권씩 성경을 묵상합니다. 그 옆에 그림책 한 권과 소설·에세이 한 권을 꽂았습니다. 질문 하나, 책 두 권, 다시 아날로그로.</p>
+    <hr class="rule thick">
+    <hr class="rule thin">
+    <div class="spines-wrap">
+      <div class="spines" id="spines" aria-hidden="true"></div>
+      <span class="spines-cap" id="spines-cap">22 / 66 · 오늘의 자리</span>
+    </div>
+  </div>
+</header>
+
+<div class="tabbar">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="책장 구분">
+      <button class="tab" id="tab-shelf" role="tab" aria-selected="true" aria-controls="panel-shelf" data-tab="shelf">📖 66권의 서가<span class="n" id="tab-n-shelf">22</span></button>
+      <button class="tab" id="tab-archive" role="tab" aria-selected="false" aria-controls="panel-archive" data-tab="archive" tabindex="-1">📚 판교책방 아카이브<span class="n" id="tab-n-archive">29</span></button>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ───── 66권의 서가 ───── -->
+  <section id="panel-shelf" role="tabpanel" aria-labelledby="tab-shelf">
+    <p class="sheet-state" id="sheet-state"><span class="dot"></span><span id="sheet-state-text">구글 시트를 확인하는 중…</span></p>
+
+    <div class="filters" id="keyword-filters" role="group" aria-label="마음 키워드 필터">
+      <span class="f-label">마음</span>
+      <button class="chip" aria-pressed="true" data-kw="전체">#전체</button>
+      <button class="chip" aria-pressed="false" data-kw="관계">#관계</button>
+      <button class="chip" aria-pressed="false" data-kw="질문과고민">#질문과고민</button>
+      <button class="chip" aria-pressed="false" data-kw="상실과위로">#상실과위로</button>
+      <button class="chip" aria-pressed="false" data-kw="일과소명">#일과소명</button>
+    </div>
+    <div class="filters" id="type-filters" role="group" aria-label="책 유형 필터">
+      <span class="f-label">유형</span>
+      <button class="chip" aria-pressed="true" data-type="전체">전체</button>
+      <button class="chip" aria-pressed="false" data-type="그림책">그림책</button>
+      <button class="chip" aria-pressed="false" data-type="소설">소설</button>
+      <button class="chip" aria-pressed="false" data-type="에세이">에세이</button>
+      <button class="chip" aria-pressed="false" data-type="인문">인문</button>
+      <button class="chip" aria-pressed="false" data-type="시">시</button>
+    </div>
+
+    <div class="sec-head">
+      <span class="sec-title">The Shelves · 창세기에서 아가서까지</span>
+      <span class="count"><b id="shelf-count">22</b>개의 서가</span>
+    </div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="empty" id="shelf-empty" hidden>
+      <b>아직 이 자리의 서가는 비어 있습니다</b>
+      다른 키워드나 유형을 눌러 보세요.
+    </div>
+
+    <div class="pending" id="pending" hidden>
+      <h3>아직 비어 있는 자리</h3>
+      <p>시트의 <b>원더노트_66권</b> 탭에 질문과 책 두 권을 적으면 이 자리에 바로 꽂힙니다.</p>
+      <ul class="spine-list" id="spine-list"></ul>
+    </div>
+  </section>
+
+  <!-- ───── 판교책방 아카이브 ───── -->
+  <section id="panel-archive" role="tabpanel" aria-labelledby="tab-archive" hidden>
+    <div class="search">
+      <label class="sr" for="q">모임 이름이나 책 제목으로 찾기</label>
+      <input id="q" type="search" inputmode="search" autocomplete="off" placeholder="모임 이름이나 책 제목으로 찾아보기">
+      <span class="mag" aria-hidden="true">⌕</span>
+    </div>
+
+    <div class="filters" id="cat-filters" role="group" aria-label="카테고리 필터">
+      <button class="chip" aria-pressed="true" data-cat="전체">전체</button>
+      <button class="chip" aria-pressed="false" data-cat="판교책방">판교책방</button>
+      <button class="chip" aria-pressed="false" data-cat="CRD">CRD</button>
+      <button class="chip" aria-pressed="false" data-cat="Wonders">Wonders</button>
+      <button class="chip" aria-pressed="false" data-cat="기타">기타</button>
+    </div>
+
+    <div class="sec-head">
+      <span class="sec-title">Archive · 함께 읽은 서가 2021–2023</span>
+      <span class="count"><b id="archive-count">29</b>개 모임 · <b id="book-count">127</b>권</span>
+    </div>
+
+    <div class="groups" id="groups"></div>
+    <div class="empty" id="archive-empty" hidden>
+      <b>찾으시는 서가가 없습니다</b>
+      다른 낱말로 찾아보시거나 카테고리를 ‘전체’로 바꿔 보세요.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-line">
+      <span>경이와믿음 · 66 Love Letters</span>
+      <span>2026. 10. 26 – 12. 31</span>
+    </div>
+    <p class="foot-sig">다시 아날로그로 :)</p>
+    <p class="foot-note">66권의 서가는 2026년 마지막 66일 묵상 중 공개된 편에서 골랐습니다. 판교책방 아카이브는 노션 ‘모이고 싶은 큐레이션’의 29개 모임 서가를 그대로 옮겨 왔고, 책 제목을 누르면 알라딘으로 이어집니다. 자료는 <a href="https://docs.google.com/spreadsheets/d/1eL_QA97mbWT1BksM1UWEBGtsDPAsI7_oriciwwVhMDM/edit" target="_blank" rel="noopener">원더노트 · 66권 관리표</a>에서 함께 고칩니다.</p>
+  </div>
+</footer>
+
+<script>
+/* ══════════ 실시간 구글 시트 ══════════ */
+const SHEET_ID = '1eL_QA97mbWT1BksM1UWEBGtsDPAsI7_oriciwwVhMDM';
+const TAB_DAYS = '원더노트_66권';
+const TAB_ARCH = '판교책방_아카이브';
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit';
+
+/* ── 인라인 기본 데이터 (시트에 닿지 않을 때) ── */
+const FALLBACK_DAYS = [{"day":1,"book_ko":"창세기","book_en":"Genesis","question":"나는 왜 여기에 있는 걸까요?","his_voice":"나는 계획이 있단다. 바로 널 내 잔치에 초대하는 것이지.","shorts_url":"https://youtube.com/shorts/cilGEeGyEcs","tags":"관계 질문과고민","books":[{"type":"그림책","title":"검피 아저씨의 뱃놀이","author":"존 버닝햄 지음, 이주령 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=100087683","note":"문을 열고 들어오라는 초대만 있고 자격 심사는 없는 책. 창세기의 첫 문장이 심판이 아니라 초대라는 것을 이 배 한 척이 보여줍니다."},{"type":"소설","title":"어린 왕자","author":"앙투안 드 생텍쥐페리 지음, 지연리 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=403152354","note":"길들여진다는 것은 서로에게 세상의 유일한 사람이 되는 일. 그 문장 하나로 이 책은 창세기 옆에 놓입니다."}],"shelf_title":"","shelf_url":""},{"day":2,"book_ko":"출애굽기","book_en":"Exodus","question":"이 하나님을 신뢰할 수 있을까요?","his_voice":"나를 신뢰하려면 먼저 나를 알아야 해.","shorts_url":"https://youtube.com/shorts/NMQfzTtrlSc","tags":"질문과고민 관계","books":[{"type":"그림책","title":"알사탕","author":"백희나 지음","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=336511319","note":"곁의 존재들 속마음을 듣게 되자 세상이 달라집니다. 알지 못하면 신뢰할 수 없다는 말을 사탕 하나로 증명하는 이야기."},{"type":"소설","title":"광장 · 구운몽","author":"최인훈","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=52010705","note":"떠나온 사람에게 남는 것은 자유가 아니라 광야입니다. 신뢰를 배우는 시간은 늘 그 사이에 있습니다."}],"shelf_title":"","shelf_url":""},{"day":3,"book_ko":"레위기","book_en":"Leviticus","question":"거룩해지는 것이 나를 행복하게 할까요?","his_voice":"거룩이 행복에 우선한다. 사실, 거룩이 곧 행복이란다.","shorts_url":"https://youtube.com/shorts/TWSiuJoTABU","tags":"질문과고민","books":[{"type":"그림책","title":"장수탕 선녀님","author":"백희나 지음","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=337434620","note":"레위기의 절반은 씻는 이야기입니다. 때를 벗고 물에 몸을 담그는 동네 목욕탕에서 거룩과 기쁨이 같은 자리에 있습니다."},{"type":"소설","title":"데미안","author":"헤르만 헤세 지음, 김연신 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400679743","note":"밝은 세계와 어두운 세계를 함께 안고 태어난 사람이 온전해지는 이야기. 거룩은 어둠을 지우는 일이 아니라 통과하는 일임을 배웁니다."}],"shelf_title":"","shelf_url":""},{"day":4,"book_ko":"민수기","book_en":"Numbers","question":"왜 이 여정은 이렇게 오래 걸릴까요?","his_voice":"너를 거룩하게 하기란 좀처럼 쉽지 않다.","shorts_url":"https://youtube.com/shorts/vVZ0xKsShT4","tags":"질문과고민","books":[{"type":"소설","title":"노인과 바다","author":"어니스트 헤밍웨이 지음, 이종인 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=362606875","note":"보이지 않는 결실을 향해 매일 같은 바다로 나가는 일. 광야의 하루도 그런 것입니다."},{"type":"에세이","title":"여행의 이유","author":"김영하","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=337633173","note":"떠남과 도착 사이에서 사람이 어떻게 달라지는지, 여행을 많이 다닌 사람의 언어로 담담하게 적어 둔 책입니다."}],"shelf_title":"사막은 샘을 품고 있다","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=107152444"},{"day":5,"book_ko":"신명기","book_en":"Deuteronomy","question":"내가 실망시켜도 사랑은 남아 있을까요?","his_voice":"넌 나를 실망시키지만, 난 널 절대 실망시키지 않을 거야.","shorts_url":"https://youtube.com/shorts/_D5k-ZToKHw","tags":"관계 상실과위로","books":[{"type":"그림책","title":"아낌없이 주는 나무","author":"셸 실버스타인 지음, 이재명 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=103017244","note":"받기만 하는 아이에게 끝까지 내어주는 나무. 실망시켜도 끊지 않으시는 사랑을 이보다 단순하게 그린 그림은 없습니다."},{"type":"소설","title":"모순","author":"양귀자","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=25843736","note":"서로를 미워하면서도 끝내 놓지 않는 두 사람의 사랑. 언약이라는 말의 가장 다정한 번역입니다."}],"shelf_title":"지지 않는다는 말","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=138291362"},{"day":6,"book_ko":"여호수아","book_en":"Joshua","question":"옳은 일을 하려면 얼마나 외로워야 할까요?","his_voice":"고통보다 죄를 더 미워해라.","shorts_url":"https://youtube.com/shorts/RRnJWIag-Cg","tags":"질문과고민 일과소명","books":[{"type":"그림책","title":"적","author":"다비드 칼리 지음, 세르주 블로크 그림, 안수연 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=2369350","note":"아군과 적군이라는 이름이 얼마나 쉽게 사람을 지우는지 보여주는 책. 고통보다 죄를 미워하라는 말이 이 책 옆에서 오래 남습니다."},{"type":"소설","title":"앵무새 죽이기","author":"하퍼 리 지음, 김욱동 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=62135003","note":"옳은 일을 하려면 마을 전체와 어긋날 각오가 필요합니다. 용기는 감정이 아니라 결단이라는 것을 보여 줍니다."}],"shelf_title":"","shelf_url":""},{"day":7,"book_ko":"사사기","book_en":"Judges","question":"내 안의 어둠은 어디서 시작되었을까요?","his_voice":"죄가 네 안에 아주 뿌리깊이 박혀 있구나.","shorts_url":"https://youtube.com/shorts/gABrWwIYOB0","tags":"질문과고민 상실과위로","books":[{"type":"그림책","title":"괴물들이 사는 나라","author":"모리스 샌닥 지음, 강무홍 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=107112023","note":"분노가 왕이 된 밤의 나라에서 아이는 돌아와 아직 식지 않은 저녁밥을 만납니다. 각기 소견대로 살던 시대의 끝에도 남는 것은 그 밥상입니다."},{"type":"소설","title":"파리대왕","author":"윌리엄 골딩 지음, 이덕형 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=351988984","note":"규칙이 사라진 섬에서 사람이 어떻게 되는지 아주 차갑게 지켜본 기록. 사사기의 마지막 문장과 같은 자리에 서 있습니다."}],"shelf_title":"","shelf_url":""},{"day":8,"book_ko":"룻기","book_en":"Ruth","question":"조용한 헌신이 정말 무언가를 바꿀까요?","his_voice":"내게 치유책이 있다.","shorts_url":"https://youtube.com/shorts/huOjqxT01S8","tags":"관계 상실과위로","books":[{"type":"그림책","title":"파도야 놀자","author":"이수지 지음","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=3882912","note":"파도 하나를 사이에 두고 겁과 호기심 사이를 오가는 아이의 하루. 룻기의 사랑도 큰 사건 없이 조금씩 가까워지는 쪽에서 시작됩니다."},{"type":"소설","title":"오베라는 남자","author":"프레드릭 배크만 지음, 최민우 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=312824974","note":"세상을 미워하다 문을 걸어 잠근 남자가 이웃 때문에 조금씩 열립니다. 회복은 혼자 시작되지 않습니다."}],"shelf_title":"배를 엮다","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=24960009"},{"day":9,"book_ko":"사무엘상","book_en":"1 Samuel","question":"치유는 왜 이렇게 아플까요?","his_voice":"치유 과정은 많이 아플 거다.","shorts_url":"https://youtube.com/shorts/9s8l1x_ZSKo","tags":"상실과위로","books":[{"type":"그림책","title":"마음이 아플까봐","author":"올리버 제퍼스 지음, 이승숙 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=8261078","note":"마음이 아플까 봐 병에 넣어 둔 마음을 다시 꺼내는 이야기. 치유가 아프다는 말을 이보다 다정하게 해 주는 책은 드뭅니다."},{"type":"소설","title":"아몬드","author":"손원평","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=318933239","note":"감정을 느끼지 못하는 소년이 상처를 통해 사람을 알게 됩니다. 치유가 아프다는 말을 가장 부드러운 방식으로 증명합니다."}],"shelf_title":"","shelf_url":""},{"day":10,"book_ko":"사무엘하","book_en":"2 Samuel","question":"넘어진 뒤에 다시 설 수 있을까요?","his_voice":"네가 치유된다면 정말 멋진 사람이 될 거야.","shorts_url":"https://youtube.com/shorts/gI12vOdGz7Y","tags":"상실과위로 관계","books":[{"type":"그림책","title":"종이 봉지 공주","author":"로버트 먼치 지음, 마이클 마르첸코 그림, 김태희 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=133389","note":"용을 이긴 공주가 왕자의 심사에 답하지 않고 자기 길을 갑니다. 치유된 사람은 남이 아니라 자기 답게 살아갑니다."},{"type":"에세이","title":"자존감 수업","author":"윤홍균","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=86793193","note":"넘어진 사람이 다시 일어서는 데 필요한 것은 의지보다 시선이라고 말합니다."}],"shelf_title":"","shelf_url":""},{"day":11,"book_ko":"열왕기상","book_en":"1 Kings","question":"성공한 뒤에 남는 것은 무엇일까요?","his_voice":"성공은 중요한 게 아니란다.","shorts_url":"https://youtube.com/shorts/XincSKfe0Bg","tags":"일과소명 질문과고민","books":[{"type":"그림책","title":"곰과 피아노","author":"데이비드 리치필드 지음, 김경미 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=83617096","note":"숲에서 피아노를 만난 곰이 도시의 스타가 되었다가 다시 숲으로 돌아옵니다. 성공의 불빛보다 처음 자리에서의 연주가 밝은 책."},{"type":"소설","title":"위대한 개츠비","author":"F. 스콧 피츠제럴드 지음, 김석희 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=402717229","note":"성공의 불빛이 꺼진 뒤에 남는 것들. 솔로몬의 영광 뒤에 남은 것과 닮았습니다."}],"shelf_title":"","shelf_url":""},{"day":12,"book_ko":"열왕기하","book_en":"2 Kings","question":"실패한 나를 다시 시작할 수 있을까요?","his_voice":"실패는 낙오가 아니라 기회다.","shorts_url":"https://youtube.com/shorts/7qA6nz29L4k","tags":"상실과위로 일과소명","books":[{"type":"그림책","title":"괜찮아","author":"최숙희 지음","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=593087","note":"놀림받은 동물들이 '그럼 너는?' 하고 되묻습니다. 실패한 사람에게 필요한 것은 평가가 아니라 자기 것을 다시 찾는 질문입니다."},{"type":"인문","title":"회복탄력성","author":"김주환","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=187544571","note":"다시 일어나는 힘은 재능이 아니라 훈련이라는 이야기. 무너진 자리에서 다시 시작하는 법을 적어 둔 책입니다."}],"shelf_title":"남한산성","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=112952239"},{"day":13,"book_ko":"역대상","book_en":"1 Chronicles","question":"잊힌 이름도 기억될 수 있을까요?","his_voice":"지금은 공허하지만 나중에는 충만할 거다.","shorts_url":"https://youtube.com/shorts/QOQ-D6dp2Bc","tags":"질문과고민 상실과위로","books":[{"type":"그림책","title":"작은 집 이야기","author":"버지니아 리 버튼 지음, 홍연미 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=106318921","note":"도시가 삼켜 버린 작은 집이 기다리고, 마침내 다시 사람이 듭니다. 공허한 시간을 세는 일이 충만을 부르는 것과 닮았습니다."},{"type":"소설","title":"소년이 온다","author":"한강","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=40869703","note":"잊히지 않게 기록하는 일이 얼마나 중요한지 이 소설은 끝까지 놓지 않습니다. 족보를 세는 마음도 그와 같습니다."}],"shelf_title":"잃어버린 시간을 찾아서 1","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=19609053"},{"day":14,"book_ko":"역대하","book_en":"2 Chronicles","question":"어두운 날에도 신뢰는 자랄까요?","his_voice":"진짜 신뢰는 어두움 속에서 자란다.","shorts_url":"https://youtube.com/shorts/SBZCKEVVBys","tags":"질문과고민","books":[{"type":"그림책","title":"그날, 어둠이 찾아왔어","author":"레모니 스니켓 글, 존 클라센 그림, 김경연 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=32379998","note":"어둠이 빛의 부재가 아니라 말을 거는 인격으로 나옵니다. 어둠과 대화를 시작하는 순간 신뢰가 자라기 시작합니다."},{"type":"소설","title":"제인 에어","author":"샬럿 브론테 지음, 공경희 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400554965","note":"어두운 집에서 자란 사람이 사랑 앞에서도 자신을 잃지 않기까지. 신뢰는 밝은 날에 배우지 않습니다."}],"shelf_title":"칼의 노래","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=35387623"},{"day":15,"book_ko":"에스라","book_en":"Ezra","question":"무너진 나를 다시 세울 수 있을까요?","his_voice":"내가 너를 거룩하고 온전하게 할 것이다.","shorts_url":"https://youtube.com/shorts/ms33wukN_Ew","tags":"질문과고민 상실과위로","books":[{"type":"그림책","title":"파랑이와 노랑이","author":"레오 리오니 지음, 이경혜 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=418555","note":"파랑과 노랑이 서로를 안으면 초록이 됩니다. 둘이 하나가 되어도 각자의 색을 잃지 않는 온전함의 그림."},{"type":"소설","title":"파친코 1","author":"이민진 지음, 신승미 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=294963999","note":"뿌리를 잃은 사람들이 다른 땅에서 다시 삶을 세우는 이야기. 귀환은 늘 두 번의 이사를 뜻합니다."}],"shelf_title":"","shelf_url":""},{"day":16,"book_ko":"느헤미야","book_en":"Nehemiah","question":"작은 순종이 무슨 의미가 있을까요?","his_voice":"작은 순종이야말로 위대한 업적이란다.","shorts_url":"https://youtube.com/shorts/KGa10ZgSd8Y","tags":"일과소명","books":[{"type":"그림책","title":"미스 럼피우스","author":"바버러 쿠니 지음, 우미경 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=100464188","note":"할아버지와 세 가지 약속을 한 소녀가 평생 조용히 꽃을 심어 마을을 바꿉니다. 작은 순종이 위대한 업적이 되는 방식을 아는 책."},{"type":"인문","title":"아주 작은 습관의 힘","author":"제임스 클리어 지음, 이한이 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=379447436","note":"위대한 결심보다 작은 반복이 사람을 바꾼다는 것을 아주 실용적으로 알려 줍니다."}],"shelf_title":"","shelf_url":""},{"day":17,"book_ko":"에스더","book_en":"Esther","question":"보이지 않는 손길을 믿을 수 있을까요?","his_voice":"그 누구도 내 계획을 막지 못해.","shorts_url":"https://youtube.com/shorts/O21PHpGKWAc","tags":"질문과고민 관계","books":[{"type":"그림책","title":"잃어버린 것","author":"숀 탠 지음, 엄혜숙 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=379900","note":"아무도 알아보지 못하는 잃어버린 존재를 소년만이 알아봅니다. 하나님이 이름을 부르지 않아도 일하시는 에스더의 방식이, 이 책이 이야기를 풀어가는 방식이기도 합니다."},{"type":"소설","title":"나미야 잡화점의 기적","author":"히가시노 게이고 지음, 양윤옥 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=307689982","note":"서로 모르는 사람들의 편지가 오가며 삶이 조금씩 바뀝니다. 보이지 않는 곳에서 이어지는 연결에 대한 이야기."}],"shelf_title":"별을 헤아리며","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=337057082"},{"day":18,"book_ko":"욥기","book_en":"Job","question":"고통에 설명이 없는 순간에도 신뢰할 수 있을까요?","his_voice":"고통의 시간이 지나야 진짜 쉼이 찾아온다.","shorts_url":"https://youtube.com/shorts/Vc9TGDy0ABg","tags":"상실과위로 질문과고민","books":[{"type":"그림책","title":"내가 가장 슬플 때","author":"마이클 로젠 지음, 퀸틴 블레이크 그림, 김기택 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=525051","note":"설명되지 않는 슬픔을 설명하지 않고 그대로 두는 책. 욥의 친구들이 끝내 하지 못한 일을 이 책은 아주 조용히 해냅니다."},{"type":"인문","title":"빅터 프랭클의 죽음의 수용소에서","author":"빅터 프랭클 지음, 이시형 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=382243812","note":"설명되지 않는 고통 속에서도 마지막까지 남는 자유가 있다는 기록. 욥기 옆에 가장 가까이 놓을 수 있는 책입니다."}],"shelf_title":"고통의 문제","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=177183747"},{"day":19,"book_ko":"시편","book_en":"Psalms","question":"믿음이 흔들릴 때도 노래할 수 있을까요?","his_voice":"가장 어려운 질문을 하고, 가장 크게 노래 불러라.","shorts_url":"https://youtube.com/shorts/ong1MJVwoAo","tags":"상실과위로 질문과고민","books":[{"type":"시","title":"윤동주 전 시집 — 하늘과 바람과 별과 시","author":"윤동주","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=289183005","note":"부끄러움과 기도가 한 문장 안에 있는 시들. 시편이 지금의 언어로 계속 쓰이고 있다는 것을 보여 줍니다."},{"type":"에세이","title":"월든","author":"헨리 데이비드 소로 지음, 이덕형 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=375195388","note":"숲에서 혼자 지내며 하루를 관찰한 기록. 시편이 소리 나는 기도라면, 월든은 그 기도가 머무는 자리입니다."}],"shelf_title":"땅에서 부르는 하늘의 노래, 시편","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=40692201"},{"day":20,"book_ko":"잠언","book_en":"Proverbs","question":"지혜는 어디서 오는 걸까요?","his_voice":"나를 따르려면 나를 두려워해라.","shorts_url":"https://youtube.com/shorts/UFQaYqNXqHI","tags":"일과소명 질문과고민","books":[{"type":"그림책","title":"빈 화분","author":"데미 지음, 서애경 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=850062","note":"꽃이 피지 않는 씨앗을 받은 아이만이 빈 화분을 들고 나옵니다. 정직이 지혜의 시작이라는 잠언의 말이 심장으로 내려옵니다."},{"type":"인문","title":"명상록","author":"마르쿠스 아우렐리우스 지음, 이덕형 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=371739164","note":"매일 아침 자신에게 다시 말을 거는 황제의 기록. 잠언이 오늘의 문장이 된다면 이런 모습일 것입니다."}],"shelf_title":"","shelf_url":""},{"day":21,"book_ko":"전도서","book_en":"Ecclesiastes","question":"다 채워지지 않는 마음을 어떻게 살까요?","his_voice":"오르막길은 곧 내리막길이다.","shorts_url":"https://youtube.com/shorts/1XXTdJ_T2Q8","tags":"일과소명 질문과고민","books":[{"type":"그림책","title":"100만 번 산 고양이","author":"사노 요코 지음, 김난주 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=383699","note":"백만 번 살고 백만 번 죽었지만 한 번도 울지 않던 고양이가 마지막에 웁니다. 헛됨을 지나 사랑에서 한 번의 삶이 됩니다."},{"type":"소설","title":"참을 수 없는 존재의 가벼움","author":"밀란 쿤데라 지음, 이재룡 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=388319072","note":"가벼움과 무게 사이에서 흔들리는 사람들. 전도서가 말하는 헛됨에 가장 가까운 소설입니다."}],"shelf_title":"제철 행복","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=338424382"},{"day":22,"book_ko":"아가서","book_en":"Song of Songs","question":"이 사랑은 어디까지 가는 걸까요?","his_voice":"춤추는 법을 가르쳐 줄게.","shorts_url":"https://youtube.com/shorts/4fn9pY6mUSY","tags":"관계 질문과고민","books":[{"type":"그림책","title":"춤추는 사자 브라이언","author":"톰 틴 디스버리 지음, 김경희 옮김","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=296798442","note":"춤추는 걸 들키면 사자가 아니게 될까 봐 숨기던 사자가 친구 앞에서 춤춥니다. 사랑은 설명이 아니라 함께 몸을 움직이는 일입니다."},{"type":"시","title":"풀꽃","author":"나태주","url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=269490563","note":"작고 흔한 것들을 사랑하는 시들. 아가서가 노래하는 사랑도 이렇게 소박한 문장들로 시작됩니다."}],"shelf_title":"사랑의 생애","shelf_url":"https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=103635484"},{"day":23,"book_ko":"이사야","book_en":"Isaiah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":24,"book_ko":"예레미야","book_en":"Jeremiah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":25,"book_ko":"예레미야애가","book_en":"Lamentations","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":26,"book_ko":"에스겔","book_en":"Ezekiel","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":27,"book_ko":"다니엘","book_en":"Daniel","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":28,"book_ko":"호세아","book_en":"Hosea","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":29,"book_ko":"요엘","book_en":"Joel","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":30,"book_ko":"아모스","book_en":"Amos","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":31,"book_ko":"오바댜","book_en":"Obadiah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":32,"book_ko":"요나","book_en":"Jonah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":33,"book_ko":"미가","book_en":"Micah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":34,"book_ko":"나훔","book_en":"Nahum","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":35,"book_ko":"하박국","book_en":"Habakkuk","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":36,"book_ko":"스바냐","book_en":"Zephaniah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":37,"book_ko":"학개","book_en":"Haggai","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":38,"book_ko":"스가랴","book_en":"Zechariah","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":39,"book_ko":"말라기","book_en":"Malachi","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":40,"book_ko":"마태복음","book_en":"Matthew","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":41,"book_ko":"마가복음","book_en":"Mark","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":42,"book_ko":"누가복음","book_en":"Luke","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":43,"book_ko":"요한복음","book_en":"John","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":44,"book_ko":"사도행전","book_en":"Acts","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":45,"book_ko":"로마서","book_en":"Romans","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":46,"book_ko":"고린도전서","book_en":"1 Corinthians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":47,"book_ko":"고린도후서","book_en":"2 Corinthians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":48,"book_ko":"갈라디아서","book_en":"Galatians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":49,"book_ko":"에베소서","book_en":"Ephesians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":50,"book_ko":"빌립보서","book_en":"Philippians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":51,"book_ko":"골로새서","book_en":"Colossians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":52,"book_ko":"데살로니가전서","book_en":"1 Thessalonians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":53,"book_ko":"데살로니가후서","book_en":"2 Thessalonians","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":54,"book_ko":"디모데전서","book_en":"1 Timothy","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":55,"book_ko":"디모데후서","book_en":"2 Timothy","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":56,"book_ko":"디도서","book_en":"Titus","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":57,"book_ko":"빌레몬서","book_en":"Philemon","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":58,"book_ko":"히브리서","book_en":"Hebrews","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":59,"book_ko":"야고보서","book_en":"James","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":60,"book_ko":"베드로전서","book_en":"1 Peter","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":61,"book_ko":"베드로후서","book_en":"2 Peter","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":62,"book_ko":"요한일서","book_en":"1 John","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":63,"book_ko":"요한이서","book_en":"2 John","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":64,"book_ko":"요한삼서","book_en":"3 John","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":65,"book_ko":"유다서","book_en":"Jude","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""},{"day":66,"book_ko":"요한계시록","book_en":"Revelation","question":"","his_voice":"","shorts_url":"","tags":"","books":[],"shelf_title":"","shelf_url":""}];
+const FALLBACK_SHELVES = [{"no":1,"name":"와글와글, 사람들이 보고 싶을 때","cat":"기타","books":[{"t":"피프티 피플","u":"http://aladin.kr/p/n4WJv"},{"t":"옥상에서 만나요","u":"http://aladin.kr/p/51erG"},{"t":"일터의 문장들","u":"http://aladin.kr/p/64eDQ"}]},{"no":2,"name":"관계라는 키워드가 내 삶에 들어올 때","cat":"기타","books":[{"t":"상자 밖에 있는 사람","u":"http://aladin.kr/p/xGmxf"},{"t":"존 오트버그의 관계 훈련","u":"http://aladin.kr/p/VKowf"},{"t":"쇼코의 미소","u":"http://aladin.kr/p/uJbXM"},{"t":"나와 너","u":"http://aladin.kr/p/INzXJ"}]},{"no":3,"name":"[책방이 된다는 것] x CRD크로스디사이플스","cat":"CRD","books":[]},{"no":4,"name":"[판교책방] 한달한책 #8","cat":"판교책방","books":[{"t":"삶을 바꾸는 책 읽기","u":"http://aladin.kr/p/iSy6"},{"t":"뜻밖의 좋은 일","u":"http://aladin.kr/p/fe2cJ"},{"t":"앞으로 올 사랑","u":"http://aladin.kr/p/uyoZV"},{"t":"아이라는 숲","u":"http://aladin.kr/p/zf2Te"},{"t":"위대한 이야기","u":"http://aladin.kr/p/lPDW9"}]},{"no":5,"name":"[판교책방] 한달한책 #7","cat":"판교책방","books":[{"t":"모녀의 세계","u":"http://aladin.kr/p/PPXYA"},{"t":"뉴 룰스","u":"http://aladin.kr/p/OPk77"},{"t":"슬픈 세상의 기쁜 말","u":"http://aladin.kr/p/T4MeP"},{"t":"마이너 필링스","u":"http://aladin.kr/p/AP8f2"},{"t":"당신의 머릿속에서 나오라","u":"http://aladin.kr/p/LPp4K"},{"t":"기억하라, 네가 누구인지를","u":"http://aladin.kr/p/7N482"}]},{"no":6,"name":"[판교책방] 한달한책 #6  RE:reading","cat":"판교책방","books":[{"t":"내리막 세상에서 일하는 노마드를 위한 안내서","u":"http://aladin.kr/p/Qejc4"},{"t":"나를 일으키는 백만 가지 방법","u":"http://aladin.kr/p/p6O7k"},{"t":"나는 철학하는 엄마입니다","u":"http://aladin.kr/p/iN7zI"}]},{"no":7,"name":"[판교책방] 한달한책 #5","cat":"판교책방","books":[{"t":"두 번째 지구는 없다","u":"http://aladin.kr/p/nforC"},{"t":"길 잃기 안내서","u":"http://aladin.kr/p/J1erb"},{"t":"오늘만큼 걷다","u":"http://aladin.kr/p/D4QmC"},{"t":"사랑이 남긴 하루","u":"http://aladin.kr/p/2NZ6h"}]},{"no":8,"name":"[판교책방] 한달한책 #4","cat":"판교책방","books":[{"t":"다정한 철학자의 미술관 이용법","u":"http://aladin.kr/p/E4zp3"},{"t":"소녀는 어떻게 어른이 되는가","u":"http://aladin.kr/p/FynTG"},{"t":"밤에 드리는 기도","u":"http://aladin.kr/p/y4zV4"},{"t":"세상이 기다리는 기독교","u":"http://aladin.kr/p/24Sfb"}]},{"no":9,"name":"[판교책방] 한달한책 #3","cat":"판교책방","books":[{"t":"아직도 가야 할 길","u":"http://aladin.kr/p/K6yUl"},{"t":"모임을 예술로 만드는 법","u":"http://aladin.kr/p/le52J"}]},{"no":10,"name":"[판교책방] 북캉스 2021","cat":"판교책방","books":[{"t":"판교책방 북캉스 2021","u":"http://pf.kakao.com/_WWxnms/85029954"}]},{"no":11,"name":"[올댓, 커뮤니티] CRD","cat":"CRD","books":[{"t":"책 잘 읽는 방법","u":"http://aladin.kr/p/7UIgy"},{"t":"홀로 성장하는 시대는 끝났다","u":"http://aladin.kr/p/cMcLk"},{"t":"나는 오늘도 책 모임에 간다","u":"http://aladin.kr/p/SNjwv"},{"t":"유쾌한 혁명을 작당하는 공동체 가이드북","u":"http://aladin.kr/p/7ObE"},{"t":"그리스도인은 왜 인문학을 공부해야 하는가?","u":"http://aladin.kr/p/iea5Q"}]},{"no":12,"name":"[판교책방] 한달한책 #1-#2","cat":"판교책방","books":[{"t":"규칙 없음","u":"http://aladin.kr/p/PNdZZ"},{"t":"어둠 속의 촛불들","u":"http://aladin.kr/p/iPR5j"},{"t":"공정하다는 착각","u":"http://aladin.kr/p/QyECn"},{"t":"성경적 여성으로 살아 본 1년","u":"http://aladin.kr/p/vNfym"}]},{"no":13,"name":"[판교책방] 기독교 서적 함께 읽기","cat":"판교책방","books":[{"t":"판교책방 안내","u":"http://bit.ly/2OKcYFo"},{"t":"덕과 성품","u":"http://aladin.kr/p/R2zba"},{"t":"행복","u":"http://aladin.kr/p/YU9vT"},{"t":"사랑하다, 살아가다","u":"http://aladin.kr/p/L6tBR"}]},{"no":14,"name":"[북앤밥] 판교 크리스천 커뮤니티","cat":"기타","books":[{"t":"판교책방 안내","u":"http://bit.ly/2OKcYFo"},{"t":"1세기 그리스도인의 선교 이야기","u":"http://aladin.kr/p/uyK03"},{"t":"나이듦의 신학","u":"http://aladin.kr/p/u2CRD"},{"t":"일의 기술","u":"http://aladin.kr/p/4nRjN"},{"t":"내면의 혁명","u":"http://aladin.kr/p/YZku"},{"t":"1세기 교회 예배 이야기","u":"http://aladin.kr/p/YKbdi"},{"t":"1세기 그리스도인의 하루 이야기","u":"http://aladin.kr/p/HL7H4"},{"t":"비전 찾기","u":"http://aladin.kr/p/y1oU"},{"t":"내면 세계의 질서와 영적 성장","u":"http://aladin.kr/p/vKpmE"},{"t":"하나님의 러브레터","u":"http://aladin.kr/p/UFS8r"},{"t":"지저스 올웨이즈","u":"http://aladin.kr/p/8oT6Q"},{"t":"마더와이즈 회복 [10주과정]","u":"http://aladin.kr/p/UF9cU"}]},{"no":15,"name":"[한달한책] 문학읽기","cat":"기타","books":[{"t":"e.l 문학 모임 (@e_l_community)","u":"https://instagram.com/e_l_community?utm_medium=copy_link"},{"t":"투명인간","u":"http://aladin.kr/p/8bQLE"},{"t":"스토너 (초판본, 양장)","u":"http://aladin.kr/p/wND1r"},{"t":"자기 앞의 생","u":"http://aladin.kr/p/UJoM2"}]},{"no":16,"name":"[책방이 된다는 것]","cat":"기타","books":[{"t":"기획자의 책 생각","u":"http://aladin.kr/p/xLrSu"},{"t":"무기가 되는 스토리","u":"http://aladin.kr/p/xLpgq"},{"t":"다시 춤추기 시작할 때까지","u":"http://aladin.kr/p/PN7yW"}]},{"no":17,"name":"[이제 글쓰기]","cat":"기타","books":[{"t":"이제, 글쓰기","u":"http://aladin.kr/p/VKtvR"},{"t":"쓰기의 감각","u":"http://aladin.kr/p/FKsIg"},{"t":"글쓰기의 태도","u":"http://aladin.kr/p/GedMz"}]},{"no":18,"name":"[이륙]","cat":"기타","books":[{"t":"하나님의 러브레터","u":"http://aladin.kr/p/UFS8r"}]},{"no":19,"name":"[몸을 읽다] with Wonders","cat":"Wonders","books":[{"t":"뇌, 하나님 설계의 비밀","u":"http://aladin.kr/p/uGUU4"},{"t":"두근두근 내 인생","u":"http://aladin.kr/p/p6oMx"},{"t":"다니엘 플랜","u":"http://aladin.kr/p/A6NLQ"}]},{"no":20,"name":"[북캉스] with Wonders","cat":"Wonders","books":[{"t":"지저스 올웨이즈","u":"http://aladin.kr/p/8oT6Q"},{"t":"글쓰기의 태도","u":"http://aladin.kr/p/GedMz"},{"t":"겸손한 뿌리","u":"http://aladin.kr/p/unOQj"},{"t":"일의 기술","u":"http://aladin.kr/p/4nRjN"},{"t":"달과 6펜스","u":"http://aladin.kr/p/bFTPJ"},{"t":"영혼의 계절들","u":"http://aladin.kr/p/WaS0"}]},{"no":21,"name":"[올댓, 아이덴티티] CRD","cat":"CRD","books":[{"t":"스토너 (초판본, 양장)","u":"http://aladin.kr/p/wND1r"},{"t":"늘 괜찮다 말하는 당신에게","u":"http://aladin.kr/p/GnOMV"},{"t":"앉는 법, 서는 법, 걷는 법","u":"http://aladin.kr/p/dUIgy"},{"t":"라이징 스트롱","u":"http://aladin.kr/p/MJJDH"},{"t":"나는 철학하는 엄마입니다","u":"http://aladin.kr/p/iN7zI"},{"t":"나는 성경이 말씀하는 나다","u":"http://aladin.kr/p/vyf9T"}]},{"no":22,"name":"[올댓, 큐레이션] CRD","cat":"CRD","books":[{"t":"예술하는 습관","u":"http://aladin.kr/p/O2vUs"},{"t":"마음사전","u":"http://aladin.kr/p/KF3rl"},{"t":"우리 취향이 완벽하게 일치하는 일은 없겠지만","u":"http://aladin.kr/p/32gKH"},{"t":"밥보다 책","u":"http://aladin.kr/p/LWXFU"},{"t":"책의 역습","u":"http://aladin.kr/p/MbtzN"}]},{"no":23,"name":"[올댓, 브랜딩] CRD","cat":"CRD","books":[{"t":"퇴사준비생의 런던","u":"http://aladin.kr/p/ALmT2"},{"t":"어느 날 대표님이 우리도 브랜딩 좀 해보자고 말했다","u":"http://aladin.kr/p/bN518"},{"t":"무기가 되는 스토리","u":"http://aladin.kr/p/xLpgq"},{"t":"의미의 발견","u":"http://aladin.kr/p/Sfl64"},{"t":"일의 기술","u":"http://aladin.kr/p/4nRjN"}]},{"no":24,"name":"[여자의 문장들2] CRD","cat":"CRD","books":[{"t":"겸손한 뿌리","u":"http://aladin.kr/p/unOQj"},{"t":"남들처럼 결혼하지 않습니다","u":"http://aladin.kr/p/TUDMc"},{"t":"당신이 반짝이던 순간","u":"http://aladin.kr/p/d1bMQ"},{"t":"어디까지나 개인적인","u":"http://aladin.kr/p/IJ5Vo"},{"t":"다시, 성경으로","u":"http://aladin.kr/p/MNYCK"}]},{"no":25,"name":"[올댓, 정리력] CRD","cat":"CRD","books":[{"t":"내면 세계의 질서와 영적 성장","u":"http://aladin.kr/p/vKpmE"},{"t":"오늘이라는 예배","u":"http://aladin.kr/p/ueBKM"},{"t":"존 오트버그의 관계 훈련","u":"http://aladin.kr/p/VKowf"},{"t":"서평 글쓰기 특강","u":"http://aladin.kr/p/yGe7e"},{"t":"스프린트","u":"http://aladin.kr/p/bJOEe"}]},{"no":26,"name":"[여자의 문장들] CRD","cat":"CRD","books":[{"t":"그때 알았더라면 좋았을 것들","u":"http://aladin.kr/p/pu19"},{"t":"내리막 세상에서 일하는 노마드를 위한 안내서","u":"http://aladin.kr/p/Qejc4"},{"t":"손의 모험","u":"http://aladin.kr/p/vJZCH"},{"t":"나를 일으키는 백만 가지 방법","u":"http://aladin.kr/p/p6O7k"}]},{"no":27,"name":"[매거진은 처음입니다만] CRD","cat":"CRD","books":[{"t":"컬처 메이킹 (반양장)","u":"http://aladin.kr/p/zo5ad"},{"t":"뉴필로소퍼 2019 7호","u":"http://aladin.kr/p/LLRtB"},{"t":"볼드저널 bold journal Issue 13 : 주말의 발견 Discovering the Weekend","u":"http://aladin.kr/p/0LhKL"},{"t":"[conceptzine vol.70]","u":"http://www.conceptzine.co.kr/shop/shopdetail.html?branduid=1292587&xcode=006&mcode=002&scode=&type=X&sort=order&cur_code=006002&GfDT=bm54W1U%3D"},{"t":"베어매거진 bear Vol.14 Picture Book","u":"http://aladin.kr/p/TL3Fi"}]},{"no":28,"name":"[페미니즘 이게 뭐라고] CRD","cat":"CRD","books":[{"t":"어른이 되어 더 큰 혼란이 시작되었다","u":"http://aladin.kr/p/EoJcB"},{"t":"현남 오빠에게","u":"http://aladin.kr/p/an0Lv"},{"t":"뒤에 올 여성들에게","u":"http://aladin.kr/p/y1erM"},{"t":"여성은 인간인가?","u":"http://aladin.kr/p/aecug"},{"t":"페미니즘 시대의 그리스도인","u":"http://aladin.kr/p/leFK8"}]},{"no":29,"name":"[여자들의 책모임]","cat":"기타","books":[{"t":"나로 사는 즐거움","u":"http://aladin.kr/p/aG9u2"},{"t":"정서적으로 건강한 여성","u":"http://aladin.kr/p/GJFsU"},{"t":"가족의 두 얼굴","u":"http://aladin.kr/p/GPZ4B"},{"t":"행복","u":"http://aladin.kr/p/YU9vT"},{"t":"사람, 장소, 환대","u":"http://aladin.kr/p/d6NIR"},{"t":"팀 켈러의 일과 영성","u":"http://aladin.kr/p/UAgY"},{"t":"지저스 투데이","u":"http://aladin.kr/p/mJkOu"},{"t":"모멸감","u":"http://aladin.kr/p/uG8iz"},{"t":"지저스 올웨이즈","u":"http://aladin.kr/p/8oT6Q"},{"t":"마음의 서재","u":"http://aladin.kr/p/w6OWo"}]}];
+
+let DAYS = FALLBACK_DAYS.slice();
+let SHELVES = FALLBACK_SHELVES.slice();
+let meta = {days:0, books:0, meetings:0};
+
+/* ── 유틸 ── */
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
+function pad2(n){ return String(n).padStart(2,'0'); }
+
+/* CSV 파서 (따옴표·줄바꿈 지원) */
+function parseCSV(text){
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++){
+    const c = text[i];
+    if (q){
+      if (c === '"'){ if (text[i+1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === ','){ row.push(cell); cell = ''; }
+    else if (c === '\n'){ row.push(cell); rows.push(row); row = []; cell = ''; }
+    else if (c !== '\r') cell += c;
+  }
+  if (cell.length || row.length){ row.push(cell); rows.push(row); }
+  return rows;
+}
+
+function csvUrl(tab){
+  return 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+    '/gviz/tq?tqx=out:csv&sheet=' + encodeURIComponent(tab);
+}
+function jsonpUrl(tab, cb){
+  return 'https://docs.google.com/spreadsheets/d/' + SHEET_ID +
+    '/gviz/tq?tqx=out:json;responseHandler:' + cb + '&sheet=' + encodeURIComponent(tab);
+}
+
+/* fetch로 읽기 — http(s)로 열었을 때 (구글 gviz가 Origin을 되돌려 주므로 CORS 통과) */
+async function readCsv(tab){
+  const res = await fetch(csvUrl(tab), {cache:'no-store'});
+  if (!res.ok) throw new Error('HTTP ' + res.status);
+  const text = await res.text();
+  const rows = parseCSV(text);
+  if (!rows.length) throw new Error('empty');
+  return rows;
+}
+
+/* JSONP로 읽기 — file:// 처럼 CORS가 막히는 자리에서도 시트를 읽는 길 */
+function readJsonp(tab){
+  return new Promise((resolve, reject) => {
+    const cb = 'wondernoteSheet_' + Math.random().toString(36).slice(2);
+    const s = document.createElement('script');
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 12000);
+    function cleanup(){ clearTimeout(timer); delete window[cb]; s.remove(); }
+    window[cb] = (payload) => {
+      try {
+        const cols = payload.table.cols.map(c => (c.label || c.id || '').trim());
+        const rows = payload.table.rows.map(r => r.c.map(c => (c && c.v != null) ? String(c.v) : ''));
+        rows.unshift(cols);
+        cleanup(); resolve(rows);
+      } catch (e){ cleanup(); reject(e); }
+    };
+    s.src = jsonpUrl(tab, cb);
+    s.onerror = () => { cleanup(); reject(new Error('script error')); };
+    document.head.appendChild(s);
+  });
+}
+
+/* 행 배열 → 객체 (헤더 이름 기준) */
+function rowsToObjects(rows){
+  if (!rows.length) return [];
+  const head = rows[0].map((h, i) => {
+    const t = String(h).trim().toLowerCase();
+    if (t) return t;
+    return ['day', 'book_ko', 'book_en', 'question', 'his_voice', 'shorts_url', 'tags'][i] || ('col' + i);
+  });
+  return rows.slice(1).map(r => {
+    const o = {};
+    head.forEach((h, i) => { o[h] = (r[i] == null ? '' : r[i]).trim(); });
+    return o;
+  });
+}
+
+function dayFromRow(o){
+  const day = parseInt(o.day, 10);
+  if (!day || !o.book_ko) return null;
+  const books = [];
+  [1,2].forEach(i => {
+    const title = o['book' + i + '_title'] || '';
+    if (!title) return;
+    books.push({
+      type: o['book' + i + '_type'] || '',
+      title: title,
+      author: o['book' + i + '_author'] || '',
+      url: o['book' + i + '_url'] || '',
+      note: o['book' + i + '_note'] || ''
+    });
+  });
+  return {
+    day: day,
+    book_ko: o.book_ko,
+    book_en: o.book_en || '',
+    question: o.question || '',
+    his_voice: o.his_voice || '',
+    shorts_url: o.shorts_url || '',
+    tags: o.tags || '',
+    books: books,
+    shelf_title: o.my_shelf_title || '',
+    shelf_url: o.my_shelf_url || ''
+  };
+}
+
+function shelvesFromObjects(objs){
+  const map = new Map();
+  objs.forEach(o => {
+    const no = parseInt(o.no, 10);
+    if (!no) return;
+    if (!map.has(no)) map.set(no, {no: no, name: o.meeting || '', cat: o.category || '', books: []});
+    if (o.book_title) map.get(no).books.push({t: o.book_title, u: o.book_url || ''});
+  });
+  return Array.from(map.values()).sort((a, b) => a.no - b.no);
+}
+
+/* 시트 → 화면 */
+async function loadSheet(){
+  let days = null, shelves = null, how = '';
+  const isFile = (location.protocol === 'file:');
+
+  /* file:// 은 Origin이 null이라 gviz fetch가 CORS로 막힌다 → 처음부터 JSONP */
+  if (!isFile){
+    try {
+      const [dRows, aRows] = await Promise.all([readCsv(TAB_DAYS), readCsv(TAB_ARCH)]);
+      days = rowsToObjects(dRows).map(dayFromRow).filter(Boolean);
+      shelves = shelvesFromObjects(rowsToObjects(aRows));
+      how = 'fetch';
+    } catch (e) {
+      if (window.console) console.warn('CSV fetch 실패 → JSONP 시도:', e && e.message);
+    }
+  }
+  if (!days || !days.length){
+    try {
+      const [dRows, aRows] = await Promise.all([readJsonp(TAB_DAYS), readJsonp(TAB_ARCH)]);
+      days = rowsToObjects(dRows).map(dayFromRow).filter(Boolean);
+      shelves = shelvesFromObjects(rowsToObjects(aRows));
+      how = 'jsonp';
+    } catch (e) {
+      if (window.console) console.warn('JSONP 실패 → 인라인 기본 데이터 사용:', e && e.message);
+    }
+  }
+  if (days && days.length){
+    DAYS = days;
+    if (shelves && shelves.length) SHELVES = shelves;
+  } else {
+    if (window.console) console.warn('시트 행을 읽지 못했습니다 → 인라인 기본 데이터로 표시');
+    how = '';
+  }
+  renderAll();
+  setSheetState(how);
+}
+
+function setSheetState(how){
+  const el = document.getElementById('sheet-state');
+  const txt = document.getElementById('sheet-state-text');
+  if (!el || !txt) return;
+  if (how === 'fetch' || how === 'jsonp'){
+    el.className = 'sheet-state ok';
+    const t = new Date();
+    txt.innerHTML = '구글 시트와 연결됨 · ' + pad2(t.getHours()) + ':' + pad2(t.getMinutes()) +
+      ' 기준 · <a href="' + SHEET_URL + '" target="_blank" rel="noopener">관리표 열기</a>';
+  } else {
+    el.className = 'sheet-state off';
+    txt.innerHTML = '시트에 닿지 못해 기본 데이터로 보는 중 · <a href="' + SHEET_URL + '" target="_blank" rel="noopener">관리표 열기</a>';
+  }
+}
+
+/* ── 서가 카드 ── */
+function pairHTML(b){
+  const tag = b.type ? '<span class="type">' + esc(b.type) + '</span>' : '';
+  const title = b.url
+    ? '<a class="pair-title" href="' + esc(b.url) + '" target="_blank" rel="noopener">' + esc(b.title) + '</a>'
+    : '<span class="pair-title">' + esc(b.title) + '</span>';
+  return '<div class="pair">' +
+    '<div class="pair-line">' + title + tag + '</div>' +
+    (b.note ? '<p class="pair-note">' + esc(b.note) + '</p>' : '') +
+    '</div>';
+}
+
+function cardHTML(d){
+  const voice = d.his_voice ? '<p class="voice"><b>HIS VOICE</b>“' + esc(d.his_voice) + '”</p>' : '';
+  const watch = d.shorts_url
+    ? '<a class="watch" href="' + esc(d.shorts_url) + '" target="_blank" rel="noopener"><span>▶</span>66 Love Letters 쇼츠 보기</a>'
+    : '';
+  const books = (d.books || []).map(pairHTML).join('');
+  const types = (d.books || []).map(b => b.type).filter(Boolean).join(' ');
+  return '<article class="card" data-tags="' + esc(d.tags) + '" data-types="' + esc(types) + '" data-day="' + d.day + '">' +
+    '<div class="card-top"><span class="stamp">No. ' + pad2(d.day) + '</span>' +
+    '<span>Day ' + pad2(d.day) + ' · ' + pad2(d.day) + ' / 66</span></div>' +
+    '<h2 class="book">' + esc(d.book_ko) + ' <span class="en">' + esc(d.book_en) + '</span></h2>' +
+    (d.question ? '<p class="q">“' + esc(d.question) + '”</p>' : '') +
+    voice + watch +
+    (books ? '<div class="pairing"><div class="pairing-h">함께 꽂은 책</div>' + books + '</div>' : '') +
+    '</article>';
+}
+
+function renderDays(){
+  const filled = DAYS.filter(d => d.books && d.books.length);
+  document.getElementById('cards').innerHTML = filled.map(cardHTML).join('');
+  document.getElementById('shelf-count').textContent = filled.length;
+  document.getElementById('tab-n-shelf').textContent = filled.length;
+
+  /* 책등 눈금 · 남은 자리 */
+  const spines = document.getElementById('spines');
+  const total = 66;
+  let h = '';
+  for (let i = 1; i <= total; i++){
+    const on = DAYS.some(d => d.day === i && d.books && d.books.length);
+    h += '<i class="' + (on ? 'on' : '') + '"></i>';
+  }
+  spines.innerHTML = h;
+  document.getElementById('spines-cap').textContent = filled.length + ' / 66 · 오늘의 자리';
+
+  const empty = [];
+  for (let i = 1; i <= total; i++){
+    if (DAYS.some(d => d.day === i && d.books && d.books.length)) continue;
+    const d = DAYS.find(x => x.day === i);
+    empty.push('<li><span class="no">' + pad2(i) + '</span><span>' + esc(d ? d.book_ko : '') + '</span></li>');
+  }
+  const pending = document.getElementById('pending');
+  if (empty.length){
+    pending.hidden = false;
+    document.getElementById('spine-list').innerHTML = empty.join('');
+  } else {
+    pending.hidden = true;
+  }
+}
+
+/* ── 필터 ── */
+const state = {kw:'전체', type:'전체'};
+function applyFilters(){
+  const cards = Array.from(document.querySelectorAll('#cards .card'));
+  let n = 0;
+  cards.forEach(card => {
+    const tags = (card.dataset.tags || '').split(/\s+/);
+    const types = (card.dataset.types || '').split(/\s+/);
+    const okKw = state.kw === '전체' || tags.includes(state.kw);
+    const okType = state.type === '전체' || types.includes(state.type);
+    const show = okKw && okType;
+    card.hidden = !show;
+    if (show) n++;
+  });
+  document.getElementById('shelf-count').textContent = n;
+  document.getElementById('shelf-empty').hidden = n !== 0;
+}
+
+function bindChips(id, key){
+  const chips = Array.from(document.querySelectorAll('#' + id + ' .chip'));
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.setAttribute('aria-pressed', x === c ? 'true' : 'false'));
+    state[key] = c.dataset[key === 'kw' ? 'kw' : 'type'];
+    applyFilters();
+  }));
+}
+
+/* ── 탭 ── */
+const tabs = Array.from(document.querySelectorAll('.tab'));
+const panels = {
+  shelf: document.getElementById('panel-shelf'),
+  archive: document.getElementById('panel-archive')
+};
+tabs.forEach(t => t.addEventListener('click', () => selectTab(t.dataset.tab)));
+function selectTab(name){
+  tabs.forEach(t => {
+    const on = t.dataset.tab === name;
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.tabIndex = on ? 0 : -1;
+  });
+  Object.keys(panels).forEach(k => { panels[k].hidden = (k !== name); });
+  window.scrollTo({top: 0, behavior: 'auto'});
+}
+
+/* ── 아카이브 ── */
+const groupsEl = document.getElementById('groups');
+const catChips = Array.from(document.querySelectorAll('#cat-filters .chip'));
+const qEl = document.getElementById('q');
+let catState = '전체';
+
+function renderGroups(){
+  groupsEl.innerHTML = SHELVES.map((g, i) => {
+    const no = pad2(g.no || i + 1);
+    const books = g.books.length
+      ? '<ul>' + g.books.map(b => '<li>' + (b.u
+          ? '<a href="' + esc(b.u) + '" target="_blank" rel="noopener">' + esc(b.t) + '</a>'
+          : esc(b.t)) + '</li>').join('') + '</ul>'
+      : '<p class="g-note">이미지로만 걸어 둔 서가입니다 — 원본 노션에서 사진으로 남아 있습니다.</p>';
+    const text = (g.name + ' ' + g.books.map(b => b.t).join(' ')).toLowerCase();
+    return '<div class="group" data-cat="' + esc(g.cat) + '" data-text="' + esc(text) + '">' +
+      '<button class="group-btn" aria-expanded="false">' +
+      '<span class="g-no">' + no + '</span>' +
+      '<span class="g-name">' + esc(g.name) + '</span>' +
+      '<span class="g-cat">' + esc(g.cat) + '</span>' +
+      '<span class="g-n">' + (g.books.length ? g.books.length + '권' : '—') + '</span>' +
+      '<span class="g-caret">▾</span>' +
+      '</button>' +
+      '<div class="g-books" hidden>' + books + '</div>' +
+      '</div>';
+  }).join('');
+
+  groupsEl.querySelectorAll('.group-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      btn.parentElement.querySelector('.g-books').hidden = open;
+    });
+  });
+  applyArchive();
+}
+
+function applyArchive(){
+  const q = qEl.value.trim().toLowerCase();
+  let shown = 0, books = 0;
+  groupsEl.querySelectorAll('.group').forEach(el => {
+    const okCat = (catState === '전체') || el.dataset.cat === catState;
+    const okQ = !q || el.dataset.text.includes(q);
+    const show = okCat && okQ;
+    el.hidden = !show;
+    if (show) { shown++; books += el.querySelectorAll('.g-books li').length; }
+  });
+  document.getElementById('archive-count').textContent = shown;
+  document.getElementById('book-count').textContent = books;
+  document.getElementById('archive-empty').hidden = shown !== 0;
+}
+
+catChips.forEach(c => c.addEventListener('click', () => {
+  catChips.forEach(x => x.setAttribute('aria-pressed', x === c ? 'true' : 'false'));
+  catState = c.dataset.cat;
+  applyArchive();
+}));
+qEl.addEventListener('input', applyArchive);
+
+/* ── 그리기 ── */
+function renderAll(){
+  renderDays();
+  renderGroups();
+  applyFilters();
+  const meetings = SHELVES.length;
+  document.getElementById('tab-n-archive').textContent = meetings;
+}
+
+bindChips('keyword-filters', 'kw');
+bindChips('type-filters', 'type');
+renderAll();
+loadSheet();
+</script>
+</body>
+</html>
