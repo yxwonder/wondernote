@@ -1,6 +1,6 @@
-# 원더노트 · 66 Shelves
+# 원더노트
 
-성경 66권의 질문 옆에 나란히 꽂힌 두 권의 책 — 구글 시트와 실시간으로 연동되는 웹 책장입니다.
+66개의 질문 옆에 나란히 꽂힌 책들 — 구글 시트와 실시간으로 연동되는 웹 책장입니다.
 
 - 페이지: https://yxwonder.github.io/wondernote/
 - 관리표(구글 시트): https://docs.google.com/spreadsheets/d/1eL_QA97mbWT1BksM1UWEBGtsDPAsI7_oriciwwVhMDM/edit
