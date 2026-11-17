@@ -38,6 +38,7 @@
     --line:#DDD6C8;
     --line-soft:#E8E2D5;
     --sepia:#8B8069;
+  --purple:#6B4F7A;
     --serif:"Noto Serif KR","Nanum Myeongjo","Apple SD Gothic Neo",serif;
     --sans:"Noto Sans KR","Apple SD Gothic Neo","Helvetica Neue",sans-serif;
     --max:1080px;
@@ -125,16 +126,29 @@
   .tabs::-webkit-scrollbar{display:none}
   .tab{
     appearance:none;background:none;border:0;cursor:pointer;
+    display:inline-flex;align-items:center;gap:6px;
     font-family:var(--serif);font-size:14.5px;letter-spacing:-.01em;
     color:var(--sepia);padding:15px 0 13px;position:relative;white-space:nowrap;
     border-bottom:2px solid transparent;transition:color .18s ease;
   }
+  /* 시그니처 아이콘 — 딥그린 윤곽 + 차분한 퍼플 포인트 */
+  .tab .ico{
+    display:inline-flex;align-items:center;justify-content:center;flex:none;
+    width:16px;height:16px;color:var(--green);opacity:.5;
+    transition:opacity .18s ease;
+  }
+  .tab .ico svg{display:block;width:16px;height:16px;overflow:visible}
+  .tab .ico .accent{stroke:var(--purple);opacity:.7;transition:opacity .18s ease}
   .tab .n{
     font-family:var(--sans);font-size:10.5px;letter-spacing:.05em;
-    color:var(--sepia);margin-left:6px;vertical-align:2px;
+    color:var(--sepia);margin-left:1px;margin-top:-1px;
   }
   .tab:hover{color:var(--green)}
+  .tab:hover .ico{opacity:.78}
+  .tab:hover .ico .accent{opacity:.9}
   .tab[aria-selected="true"]{color:var(--green);border-bottom-color:var(--green)}
+  .tab[aria-selected="true"] .ico{opacity:1}
+  .tab[aria-selected="true"] .ico .accent{opacity:1}
   .tab[aria-selected="true"] .n{color:var(--green-soft)}
 
   /* ───────── filter chips ───────── */
@@ -442,8 +456,8 @@
 <div class="tabbar">
   <div class="wrap">
     <div class="tabs" role="tablist" aria-label="책장 구분">
-      <button class="tab" id="tab-shelf" role="tab" aria-selected="true" aria-controls="panel-shelf" data-tab="shelf">📖 66권의 서가<span class="n" id="tab-n-shelf">22</span></button>
-      <button class="tab" id="tab-archive" role="tab" aria-selected="false" aria-controls="panel-archive" data-tab="archive" tabindex="-1">📚 판교책방 아카이브<span class="n" id="tab-n-archive">29</span></button>
+      <button class="tab" id="tab-shelf" role="tab" aria-selected="true" aria-controls="panel-shelf" data-tab="shelf"><span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4.6C6.9 3.8 5.4 3.4 3.4 3.4H2.3v8.4h1.1c2 0 3.5.5 4.6 1.4 1.1-.9 2.6-1.4 4.6-1.4h1.1V3.4h-1.1c-2 0-3.5.4-4.6 1.2Z"/><path d="M8 4.6v8.6"/><path class="accent" d="M9.4 5.1h2.5v4.4l-1.25-.9-1.25.9z"/></svg></span><span class="lbl">66권의 서가</span><span class="n" id="tab-n-shelf">22</span></button>
+      <button class="tab" id="tab-archive" role="tab" aria-selected="false" aria-controls="panel-archive" data-tab="archive" tabindex="-1"><span class="ico" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M3.1 12.6V4.2a.7.7 0 0 1 .7-.7h1a.7.7 0 0 1 .7.7v8.4"/><path d="M6.9 12.6V6.1a.7.7 0 0 1 .7-.7h1a.7.7 0 0 1 .7.7v6.5"/><rect class="accent" x="10.3" y="4.6" width="2.4" height="8" rx=".6"/><path d="M2.4 12.6h11.2"/></svg></span><span class="lbl">판교책방 아카이브</span><span class="n" id="tab-n-archive">29</span></button>
     </div>
   </div>
 </div>
