@@ -134,21 +134,25 @@
   /* 시그니처 아이콘 — 딥그린 윤곽 + 차분한 퍼플 포인트 */
   .tab .ico{
     display:inline-flex;align-items:center;justify-content:center;flex:none;
-    width:16px;height:16px;color:var(--green);opacity:.56;
-    transition:opacity .18s ease;
+    width:16px;height:16px;
+    color:color-mix(in srgb, var(--green) 60%, var(--paper));
+    transition:color .18s ease;
   }
   .tab .ico svg{display:block;width:16px;height:16px;overflow:visible}
-  .tab .ico .accent{stroke:var(--purple);opacity:.72;transition:opacity .18s ease}
+  .tab .ico .accent{
+    stroke:color-mix(in srgb, var(--purple) 60%, var(--paper));
+    transition:stroke .18s ease;
+  }
   .tab .n{
     font-family:var(--sans);font-size:10.5px;letter-spacing:.05em;
     color:var(--sepia);margin-left:1px;margin-top:-1px;
   }
   .tab:hover{color:var(--green)}
-  .tab:hover .ico{opacity:.78}
-  .tab:hover .ico .accent{opacity:.9}
+  .tab:hover .ico{color:color-mix(in srgb, var(--green) 82%, var(--paper))}
+  .tab:hover .ico .accent{stroke:color-mix(in srgb, var(--purple) 84%, var(--paper))}
   .tab[aria-selected="true"]{color:var(--green);border-bottom-color:var(--green)}
-  .tab[aria-selected="true"] .ico{opacity:1}
-  .tab[aria-selected="true"] .ico .accent{opacity:1}
+  .tab[aria-selected="true"] .ico{color:var(--green)}
+  .tab[aria-selected="true"] .ico .accent{stroke:var(--purple)}
   .tab[aria-selected="true"] .n{color:var(--green-soft)}
 
   /* ───────── filter chips ───────── */
